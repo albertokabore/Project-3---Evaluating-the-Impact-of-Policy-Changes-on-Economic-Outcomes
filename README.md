@@ -2,7 +2,7 @@
 
 The reviewed notebook compares L1 and L2 logistic regression with unregularized logistic regression and a constant-probability baseline using the supplied `marketing_AB.csv`.
 
-**Scope:** this project addresses the supplied marketing-prediction assignment. The local file contains 588,101 records and 14,843 conversions. No synthetic records have been added. The original empirical authenticity, collection process, randomization protocol, and correspondence to the hosted Kaggle file remain unverified; do not describe these records as verified real experimental data.
+**Scope:** this project addresses the supplied marketing-prediction assignment. The local file contains 588,101 records and 14,843 conversions. No synthetic records have been added. Albert Kabore confirms obtaining the dataset from https://www.kaggle.com/datasets/faviovaz/marketing-ab-testing. The original collection process and assignment protocol have not been independently verified.
 
 ## Reviewed deliverables
 
@@ -12,11 +12,11 @@ The reviewed notebook compares L1 and L2 logistic regression with unregularized 
 - `.vscode/`: workspace interpreter and notebook working-directory settings plus recommended extensions.
 - `requirements-verified.txt`: installed package versions used during review.
 
-The current written deliverable is `report/Project3_Regularization_Report_APA_Expanded.docx`, authored by Albert Kabore, PhD student in AI. It includes all nine requested sections, result tables, figures, references, and an assignment-requirements appendix. Rebuild it with `python report/build_report.py`; the builder reads the notebook prose and saved numerical results.
+The current written deliverable is `report/Project3_Marketing_Analytics_Report.docx`, authored by Albert Kabore, PhD student in AI. It includes all nine requested sections, result tables, figures, references, and a concise scope-of-inference paragraph. Rebuild it with `python report/build_report.py`; the builder reads the notebook prose and saved numerical results.
 
-**Unresolved assignment requirements:** the dataset lacks both customer demographics and purchase history. Instructor acceptance of this substitution has not been provided. The separate Regularization Methods Project Rubric was not supplied, so rubric-specific compliance cannot be certified. Dataset authenticity also remains unverified. The report's structure is complete, but the project must not be described as fully compliant.
+**Assignment context:** the supplied instructions explicitly list this Kaggle dataset as the example. The report analyzes its campaign-exposure features and conversion outcome through all nine required sections. The separate grading rubric was not supplied; no rubric-specific grade is claimed.
 
-The older PDF is preserved as `report/Project3_Regularization_Report_LEGACY_UNREVIEWED.pdf`. It contains superseded text and is not the current deliverable. The assignment allows Word or PDF; the reviewed deliverable is Word.
+Only the latest corrected Word report is retained. Superseded Word and PDF reports have been removed.
 
 ## Reproduce
 
@@ -30,6 +30,6 @@ Run from the repository root. Runtime depends on CPU, memory, and thread configu
 
 ## Interpretation
 
-Results are exploratory internal validation. Full-data EDA informed feature choices, feature availability before conversion is unknown, and no untouched external campaign was evaluated. Sparsity is not statistical significance; predictive lift is not incremental advertising benefit. Dataset provenance must be established before using this work as real-world empirical evidence.
+Results are exploratory internal validation. Full-data EDA informed feature choices, feature availability before conversion is unknown, and no untouched external campaign was evaluated. Sparsity is not statistical significance; predictive lift is not incremental advertising benefit. The Kaggle download source is confirmed; original collection details are still needed for experimental or causal claims.
 
-The expanded report uses APA author-date citations and an alphabetized reference list with hanging indents and clickable URLs. `report/references.json` stores the reference metadata. The earlier Word file remains as a previous version because it was locked during this revision.
+The expanded report uses APA author-date citations and an alphabetized reference list with hanging indents and clickable URLs. `report/references.json` stores the reference metadata.

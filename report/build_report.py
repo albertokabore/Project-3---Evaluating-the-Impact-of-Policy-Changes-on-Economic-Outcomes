@@ -16,7 +16,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx_helpers import new_document, add_page_number_footer, para, bullets, table, figure, page_break
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "report" / "Project3_Regularization_Report_APA_Expanded.docx"
+OUT = ROOT / "report" / "Project3_Marketing_Analytics_Report.docx"
 n = nbformat.read(ROOT / "Project3_Regularized_Conversion_Model.ipynb", as_version=4)
 REPORT_CELL_IDS = {0: '0011b027', 1: 'db73efff', 3: '59b66384', 6: '14df3f1f', 8: '05c5261e', 9: 'a4f159ca', 13: '2f7fad5b', 14: '645ebb68', 18: '32022942', 20: '5a388a9a', 24: '23153c18', 25: '1d5a712c', 27: '61060a8e', 30: 'cfd3f251', 37: 'acd50cde', 38: '28a34072', 42: 'c982924c', 43: '45fcbc0c', 45: '750a124b'}
 by_id = {c.id: c for c in n.cells}
@@ -116,9 +116,8 @@ para(doc, "Predicting Campaign Conversion with Regularized Logistic Regression",
 para(doc, "Albert Kabore", size=13, align=WD_ALIGN_PARAGRAPH.CENTER)
 para(doc, "PhD student in AI", align=WD_ALIGN_PARAGRAPH.CENTER)
 para(doc, "October 1, 2026", align=WD_ALIGN_PARAGRAPH.CENTER)
-para(doc, "Scope: computational analysis of the supplied marketing records. The data-collection requirement "
-     "is only partially met because demographics and purchase history are absent. Original empirical provenance "
-     "and the separate grading rubric remain unverified.")
+para(doc, "Analysis of the assignment's example Marketing A/B Testing dataset: conversion prediction, "
+     "regularization, and the trade-off between predictive performance and coefficient sparsity.")
 page_break(doc)
 
 doc.add_heading("1. Introduction", level=1)
@@ -133,20 +132,36 @@ groups = raw.groupby("test group")["converted"].agg(["size", "sum", "mean"])
 table(doc, ["Recorded group", "Records", "Conversions", "Conversion rate"],
       [[g, f"{r['size']:,.0f}", f"{r['sum']:,.0f}", f"{r['mean']:.3%}"] for g, r in groups.iterrows()],
       [1.7, 1.6, 1.6, 1.6])
-para(doc, "Data profile. Counts and rates are computed directly from the supplied CSV; group labels do not independently verify random assignment.", italic=True, size=9)
-para(doc, "The unit of analysis is a record with a unique user identifier. The binary target indicates recorded conversion. "
-     "There are no dated transactions, monetary outcomes, demographic attributes, or verified pre-campaign histories. "
-     "Consequently, this file supports a conversion-classification exercise but cannot quantify customer lifetime value "
-     "or establish which predictors were available before the outcome. No external customer records were joined.")
+para(doc, "Data profile. Counts and conversion rates computed directly from the supplied CSV.", italic=True, size=9)
+para(doc, "Each record represents a uniquely identified user. The target records conversion, while the predictors "
+     "describe exposure volume, most-active day and hour, and ad-versus-PSA group membership. These variables "
+     "support analysis of class balance, exposure patterns, timing differences, and conditional conversion prediction.")
+exposure = raw["total ads"]
+table(doc, ["Exposure statistic", "Total ads"],
+      [["Minimum", f"{exposure.min():,}"], ["25th percentile", f"{exposure.quantile(.25):.1f}"],
+       ["Median", f"{exposure.median():.1f}"], ["Mean", f"{exposure.mean():.2f}"],
+       ["75th percentile", f"{exposure.quantile(.75):.1f}"], ["Maximum", f"{exposure.max():,}"]], [3.5, 3.0])
+para(doc, f"Mean exposure is {exposure.mean():.2f} ads compared with a median of {exposure.median():.0f}. "
+     "Together with the large maximum, this indicates a right-skewed distribution. The log transform reduces "
+     "the numerical influence of the upper tail while the retained raw term allows the fitted curve to change shape.")
 cell(13)
 chart("eda_total_ads.png", "Figure 1. Exposure distribution and observed conversion rates by quantile-based exposure group.")
 
+chart("eda_day_hour.png", "Figure 2. Observed conversion rates by most-ads day and hour.")
+days = raw.groupby("most ads day")["converted"].agg(["size", "sum", "mean"])
+day_order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+table(doc, ["Day", "Records", "Conversions", "Conversion rate"],
+      [[day, f"{days.loc[day, 'size']:,}", f"{days.loc[day, 'sum']:,}", f"{days.loc[day, 'mean']:.2%}"] for day in day_order],
+      [1.6, 1.7, 1.6, 1.6])
+para(doc, "Day-level rates summarize variation across timing groups. Categorical encoding preserves this flexibility "
+     "without imposing an ordered Monday-to-Sunday effect. The same reasoning applies to hour, for which a single "
+     "linear coefficient would assume a constant change between successive clock hours.")
 doc.add_heading("3. Data Preprocessing", level=1)
 cell(14, True)
 para(doc, f"The regularized design matrix contains {m['n_features']} encoded predictors: three numeric terms, "
      f"seven day indicators, and 24 hour indicators. Reference coding gives {m['n_features_ref']} predictors "
-     "for unregularized logistic regression. Missing raw categories would still need validation before "
-     "feature engineering; imputers alone do not establish readiness for arbitrary future inputs.")
+     "for unregularized logistic regression. This difference follows from retaining all categorical levels "
+     "in penalized models and dropping one level per categorical variable in the unregularized comparison.")
 
 doc.add_heading("4. Model Selection & Regularization", level=1)
 cell(18, True)
@@ -158,7 +173,7 @@ rows = [[f"{r.C:.5g}", f"{r.cv_auc_mean_L1:.5f}", f"{r.cv_auc_mean_L2:.5f}",
 table(doc, ["C", "L1 CV AUC", "L2 CV AUC", "L1 log-loss", "L2 log-loss"], rows,
       [1.1, 1.35, 1.35, 1.35, 1.35])
 cell(24)
-chart("cv_validation_curves.png", "Figure 2. Cross-validation results; shaded bands represent fold standard deviations.")
+chart("cv_validation_curves.png", "Figure 3. Cross-validation results; shaded bands represent fold standard deviations.")
 
 doc.add_heading("6. Evaluation", level=1)
 cell(30, True)
@@ -204,15 +219,16 @@ ols = selected.loc["Unregularized LR"]
 se = selected.loc["Lasso (L1, 1-SE)"]
 para(doc, f"Relative to unregularized logistic regression, tuned L1 changes ROC-AUC by {l1.roc_auc-ols.roc_auc:+.6f}, "
      f"AP by {l1.pr_auc-ols.pr_auc:+.6f}, and log-loss by {l1.log_loss-ols.log_loss:+.6f}. "
-     "These small numerical changes do not support claiming a substantial predictive gain. No uncertainty interval "
-     "for the paired differences was computed, so neither superiority nor equivalence is established.")
+     "The predictive change is small on this split. The main contrast is therefore how the penalties alter "
+     "coefficient selection while retaining similar ranking scores.")
 para(doc, f"The sparse 1-SE model changes AP by {se.pr_auc-l1.pr_auc:+.6f}, log-loss by "
      f"{se.log_loss-l1.log_loss:+.6f}, and Brier score by {se.brier-l1.brier:+.6f} relative to tuned L1. "
      "Its simpler coefficient representation therefore accompanies worse point estimates for these metrics, "
      "even though its ROC-AUC is slightly higher. The preferred candidate depends on the metric that matches the task.")
-chart("roc_pr_curves.png", "Figure 3. ROC and precision-recall curves for the test split.")
-chart("confusion_matrices.png", "Figure 4. Confusion matrices at the training-selected thresholds.", 5.7)
+chart("roc_pr_curves.png", "Figure 4. ROC and precision-recall curves for the test split.")
+chart("confusion_matrices.png", "Figure 5. Confusion matrices at the training-selected thresholds.", 5.7)
 
+chart("cumulative_gains.png", "Figure 6. Cumulative share of test converters captured by the score ranking.", 4.8)
 doc.add_heading("7. Interpretation", level=1)
 cell(38, True)
 rows = [[idx, f"{r['Ridge (L2)']:.4f}", f"{r['Lasso (L1)']:.4f}", f"{r['Lasso (L1, 1-SE)']:.4f}"]
@@ -235,15 +251,15 @@ para(doc, f"For tuned L1, the standardized is_ad coefficient is {coef.loc['is_ad
      "This is an adjusted model association; it is not an estimated causal effect of assignment.")
 para(doc, f"For an illustrative comparison of 10 versus 20 recorded ads, changing the raw and log inputs together "
      f"gives a fitted log-odds difference of {exposure_contrast:.4f}, or an odds ratio of {np.exp(exposure_contrast):.3f}, "
-     "with the remaining inputs fixed. This is an algebraic contrast from the fitted model, not a new observation, "
-     "simulated data, or a recommendation to double exposure. An odds ratio is also not a probability ratio.")
+     "with the remaining inputs fixed. This algebraic contrast combines both exposure coefficients and "
+     "illustrates how to interpret the fitted curve. It compares odds rather than conversion probabilities.")
 doc.add_heading("7.2 What the sparse model removes", level=2)
 para(doc, "The encoded terms set to zero by the 1-SE L1 fit are: " + ", ".join(m["dropped_l1_1se"]) + ".")
 para(doc, f"Its coefficient L1 norm is {m['coef_norm_ratio']['Lasso (L1, 1-SE)']:.3f} times that of the "
-     "least-penalized L1 fit at C = 10 on the same encoded design. This compares total absolute coefficient size "
-     "within this parameterization; it is not a percentage reduction in prediction error or proof of causal irrelevance.")
+     "least-penalized L1 fit at C = 10 on the same encoded design. This quantifies the shrinkage in total absolute coefficient size "
+     "within the same parameterization, complementing the count of retained terms.")
 cell(27)
-chart("regularization_paths.png", "Figure 5. Coefficient paths and the number of nonzero L1 terms across the penalty grid.")
+chart("regularization_paths.png", "Figure 7. Coefficient paths and the number of nonzero L1 terms across the penalty grid.")
 
 doc.add_heading("8. Conclusion", level=1)
 ending, _ = report_cells[45].source.split("## 13. References", 1)
@@ -255,7 +271,7 @@ doc.add_heading("9. References", level=1)
 for entry in refs:
     apa_reference(doc, entry)
 para(doc, "Source note. Peer-reviewed articles support the software and evaluation discussion; official documentation "
-     "supports implementation details. Kaggle is the dataset listing, not independent verification of its collection. "
+     "supports implementation details. The dataset reference identifies the Kaggle example specified in the assignment. "
      "Undated documentation is cited as n.d.; release years have not been inferred from copyright notices.", size=9)
 doc.add_heading("Reproducibility record", level=2)
 para(doc, "The computational workflow uses Python (Python Software Foundation, n.d.), pandas (pandas, n.d.), "

@@ -56,3 +56,19 @@ The numerical workflow was not rerun for this prose-only revision: all 27 code c
 Created report/Project3_Regularization_Report_APA_Expanded.docx because the previous Word file was locked with a Word lock file present. Added detailed model formulation, preprocessing order, solver settings, CV fit counts, classification errors, model-score differences, worked coefficient contrasts, and sparse-term interpretation. These details use the existing model outputs and the unchanged input file; no fitted models or observations were fabricated.
 
 References now use APA author-date citations, alphabetization, italicized titles/journal volumes, hanging indents, and live external URL relationships. Verified 12 references, all nine required sections, and five embedded figures. Source metadata for the peer-reviewed papers was checked against JMLR and PLOS; software references point to official documentation. The dataset listing remains distinct from verified empirical provenance. Visual Word pagination was not rendered.
+
+## Author-confirmed dataset source
+
+Albert Kabore confirmed that marketing_AB.csv was obtained from https://www.kaggle.com/datasets/faviovaz/marketing-ab-testing. Updated the notebook and report to state this explicitly, separating the confirmed download source from independently unverified original collection details. This supersedes earlier wording suggesting the download source was unconfirmed. The expanded Word file was locked, so the corrected deliverable is report/Project3_Regularization_Report_APA_Corrected.docx.
+
+## Impersonal academic wording
+
+Revised narrative passages to remove first-person language while retaining Albert Kabore as author. Rebuilt report/Project3_Regularization_Report_APA_Revised.docx and verified its paragraphs and tables contain no first-person pronouns. All nine required sections, 12 reference links, five figures, and numerical results are retained. Notebook code and executed outputs are unchanged; no observations or model results were fabricated.
+
+## Assignment example and analytical emphasis
+
+The latest assignment text explicitly identifies the Marketing A/B Testing Kaggle dataset as its example. This supersedes earlier conclusions that the selected dataset required separate instructor approval. Rebalanced the notebook and report around descriptive analysis, preprocessing, regularization, tuning, evaluation, and coefficient interpretation. Added data-derived exposure summaries and day-level counts to the Word report, and included timing and cumulative-gains figures. Consolidated the main inference qualifications into one short concluding paragraph. The current deliverable is report/Project3_Marketing_Analytics_Report.docx. Verified nine required sections, seven embedded figures, 12 reference hyperlinks, unchanged input hash, and preserved notebook code/outputs.
+
+## Report cleanup
+
+Verified and retained Project3_Marketing_Analytics_Report.docx as the sole report document. Removed all superseded Word reports and the legacy PDF after their locks were released. The build script, formatting helper, and reference metadata remain available for reproduction. Earlier entries describing preserved report copies are historical and superseded by this cleanup.
