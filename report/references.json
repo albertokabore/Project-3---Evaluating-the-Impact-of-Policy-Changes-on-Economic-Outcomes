@@ -1,0 +1,208 @@
+[
+  {
+    "author": "faviovaz",
+    "parts": [
+      {
+        "text": "faviovaz. (n.d.). "
+      },
+      {
+        "text": "Marketing A/B testing",
+        "italic": true
+      },
+      {
+        "text": " [Data set]. Kaggle. "
+      }
+    ],
+    "url": "https://www.kaggle.com/datasets/faviovaz/marketing-ab-testing"
+  },
+  {
+    "author": "Joblib",
+    "parts": [
+      {
+        "text": "Joblib. (n.d.). "
+      },
+      {
+        "text": "Joblib documentation",
+        "italic": true
+      },
+      {
+        "text": ". Retrieved October 1, 2026, from "
+      }
+    ],
+    "url": "https://joblib.readthedocs.io/en/stable/"
+  },
+  {
+    "author": "Matplotlib",
+    "parts": [
+      {
+        "text": "Matplotlib. (n.d.). "
+      },
+      {
+        "text": "Matplotlib documentation",
+        "italic": true
+      },
+      {
+        "text": ". Retrieved October 1, 2026, from "
+      }
+    ],
+    "url": "https://matplotlib.org/stable/"
+  },
+  {
+    "author": "NumPy",
+    "parts": [
+      {
+        "text": "NumPy. (n.d.). "
+      },
+      {
+        "text": "NumPy documentation",
+        "italic": true
+      },
+      {
+        "text": ". Retrieved October 1, 2026, from "
+      }
+    ],
+    "url": "https://numpy.org/doc/"
+  },
+  {
+    "author": "pandas",
+    "parts": [
+      {
+        "text": "pandas. (n.d.). "
+      },
+      {
+        "text": "pandas documentation",
+        "italic": true
+      },
+      {
+        "text": ". Retrieved October 1, 2026, from "
+      }
+    ],
+    "url": "https://pandas.pydata.org/docs/"
+  },
+  {
+    "author": "Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M., & Duchesnay, E.",
+    "parts": [
+      {
+        "text": "Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M., & Duchesnay, E. (2011). "
+      },
+      {
+        "text": "Scikit-learn: Machine learning in Python",
+        "italic": false
+      },
+      {
+        "text": ". "
+      },
+      {
+        "text": "Journal of Machine Learning Research, 12",
+        "italic": true
+      },
+      {
+        "text": ", 2825–2830. "
+      }
+    ],
+    "url": "https://www.jmlr.org/papers/v12/pedregosa11a.html"
+  },
+  {
+    "author": "Project Jupyter",
+    "parts": [
+      {
+        "text": "Project Jupyter. (n.d.). "
+      },
+      {
+        "text": "Project Jupyter documentation",
+        "italic": true
+      },
+      {
+        "text": ". Retrieved October 1, 2026, from "
+      }
+    ],
+    "url": "https://docs.jupyter.org/en/latest/"
+  },
+  {
+    "author": "python-docx",
+    "parts": [
+      {
+        "text": "python-docx. (n.d.). "
+      },
+      {
+        "text": "python-docx documentation",
+        "italic": true
+      },
+      {
+        "text": ". Retrieved October 1, 2026, from "
+      }
+    ],
+    "url": "https://python-docx.readthedocs.io/en/latest/"
+  },
+  {
+    "author": "Python Software Foundation",
+    "parts": [
+      {
+        "text": "Python Software Foundation. (n.d.). "
+      },
+      {
+        "text": "Python 3.11 documentation",
+        "italic": true
+      },
+      {
+        "text": ". Retrieved October 1, 2026, from "
+      }
+    ],
+    "url": "https://docs.python.org/3.11/index.html"
+  },
+  {
+    "author": "Saito, T., & Rehmsmeier, M.",
+    "parts": [
+      {
+        "text": "Saito, T., & Rehmsmeier, M. (2015). "
+      },
+      {
+        "text": "The precision-recall plot is more informative than the ROC plot when evaluating binary classifiers on imbalanced datasets",
+        "italic": false
+      },
+      {
+        "text": ". "
+      },
+      {
+        "text": "PLOS ONE, 10",
+        "italic": true
+      },
+      {
+        "text": "(3), Article e0118432. "
+      }
+    ],
+    "url": "https://doi.org/10.1371/journal.pone.0118432"
+  },
+  {
+    "author": "scikit-learn",
+    "parts": [
+      {
+        "text": "scikit-learn. (n.d.-a). "
+      },
+      {
+        "text": "average_precision_score",
+        "italic": true
+      },
+      {
+        "text": ". In Scikit-learn 1.7 documentation. "
+      }
+    ],
+    "url": "https://scikit-learn.org/1.7/modules/generated/sklearn.metrics.average_precision_score.html"
+  },
+  {
+    "author": "scikit-learn",
+    "parts": [
+      {
+        "text": "scikit-learn. (n.d.-b). "
+      },
+      {
+        "text": "LogisticRegression",
+        "italic": true
+      },
+      {
+        "text": ". In Scikit-learn 1.7 documentation. "
+      }
+    ],
+    "url": "https://scikit-learn.org/1.7/modules/generated/sklearn.linear_model.LogisticRegression.html"
+  }
+]
