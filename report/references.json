@@ -26,7 +26,7 @@
         "italic": true
       },
       {
-        "text": ". Retrieved October 1, 2026, from "
+        "text": ". Retrieved from "
       }
     ],
     "url": "https://joblib.readthedocs.io/en/stable/"
@@ -42,7 +42,7 @@
         "italic": true
       },
       {
-        "text": ". Retrieved October 1, 2026, from "
+        "text": ". Retrieved from "
       }
     ],
     "url": "https://matplotlib.org/stable/"
@@ -58,7 +58,7 @@
         "italic": true
       },
       {
-        "text": ". Retrieved October 1, 2026, from "
+        "text": ". Retrieved from "
       }
     ],
     "url": "https://numpy.org/doc/"
@@ -74,7 +74,7 @@
         "italic": true
       },
       {
-        "text": ". Retrieved October 1, 2026, from "
+        "text": ". Retrieved from "
       }
     ],
     "url": "https://pandas.pydata.org/docs/"
@@ -113,7 +113,7 @@
         "italic": true
       },
       {
-        "text": ". Retrieved October 1, 2026, from "
+        "text": ". Retrieved from "
       }
     ],
     "url": "https://docs.jupyter.org/en/latest/"
@@ -129,7 +129,7 @@
         "italic": true
       },
       {
-        "text": ". Retrieved October 1, 2026, from "
+        "text": ". Retrieved from "
       }
     ],
     "url": "https://python-docx.readthedocs.io/en/latest/"
@@ -145,7 +145,7 @@
         "italic": true
       },
       {
-        "text": ". Retrieved October 1, 2026, from "
+        "text": ". Retrieved from "
       }
     ],
     "url": "https://docs.python.org/3.11/index.html"
